@@ -21,8 +21,6 @@ Two analogous way to look at the difference between containers and images:
     - like programs and processes. In the same way that a process is an executing program, a container is an executing image.
     - like classes and objects. In the same way that an object is an instance of a class, a container is an instance of an image.
 
-
-
 ## Docker as local development tool 
 
 - Host file system pollution problem (e.g. node_modules, .env, etc.)

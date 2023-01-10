@@ -1,4 +1,8 @@
 
+# REMEMBER:
+    - match login.fr.42 using docker dns not by modify host 
+    -  reasearch hands and really get into nginx
+     
 # Docker
 
 The conclusion **Docker is all about process isolation.**
@@ -18,7 +22,7 @@ At a high level (which only what i know for now..), docker uses the following li
     - namespaces : isolate the processes from the host machine
     - union file systems : overlay multiple file systems into a single one
 
-[What is the difference between VM and container?](https://www.youtube.com/watch?v=cjXI-yxqGTI)
+[What is the difference between VM adond container?](https://www.youtube.com/watch?v=cjXI-yxqGTI)
 Key Sentence: **containers are about process isolation, VMs are about machine virtualization.**
 
 ### What is the diffrence between an image and container?

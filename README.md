@@ -21,14 +21,25 @@ Two analogous way to look at the difference between containers and images:
     - like programs and processes. In the same way that a process is an executing program, a container is an executing image.
     - like classes and objects. In the same way that an object is an instance of a class, a container is an instance of an image.
 
+
+### [Docker architecture](https://docs.docker.com/engine/docker-overview/#docker-architecture)
+
+
+### [How to controle docker deamon from a web browser]
+
+
 ## Docker as local development tool 
 
 - Host file system pollution problem (e.g. node_modules, .env, etc.)
 - Versions dependencies conflicts (e.g. node, npm, etc.)
 - Different OS (e.g. Windows, Mac, Linux, etc.)
 
-
-
 ## Docker and Microservices
 
 [A study case (how netflix transitioned to microservices architecture)](https://www.youtube.com/watch?v=CZ3wIuvmHeM&list=RDQM7FUm0ifHC4U&start_radio=1)
+
+
+
+## Ahaaa Moments
+Docker server is a standard application written in GO that returns http responses.
+

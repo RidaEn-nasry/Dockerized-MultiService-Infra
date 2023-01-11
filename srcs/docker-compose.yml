@@ -1,0 +1,15 @@
+version: '3.9'
+networks:
+  docker-network:
+    driver: bridge
+
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    ports:
+      - 80:80
+    networks:
+      - docker-network
+  
+  

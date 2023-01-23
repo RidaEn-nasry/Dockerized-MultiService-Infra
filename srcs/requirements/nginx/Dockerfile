@@ -1,15 +1,25 @@
-FROM alpine:latest
-# adding nignx 
-RUN apk update && apk add nginx
-WORKDIR /home
 
 
-# keep the container running as a daemon
-# creating the config file
-# COPY ./conf/nginx.conf /home
-# COPY ./conf/index.html /home
+FROM alpine:3.17
 
-EXPOSE 80
+RUN apk update && apk add nginx openssl
+RUN wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64
+RUN chmod +x /usr/bin/dumb-init
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=MO/L=KH/O=1337/OU=student/CN=ren-nasr.1337.ma"
 
-CMD ["nginx", "-g", "daemon off;", "-c", "/home/nginx.conf"]
+COPY ./conf/custom-nginx.conf /etc/nginx/custom-nginx.conf
+RUN mkdir -p /var/www/html/
+
+#give the permission to the folder
+RUN chmod -R 755 /var/www/html/
+
+
+COPY ./tools/index.html /var/www/html/index.html
+
+EXPOSE 443
+
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+
+CMD ["nginx", "-c", "/etc/nginx/custom-nginx.conf", "-g", "daemon off;"]
+
 

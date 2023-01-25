@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3'
 networks:
   inception:
     driver: bridge
@@ -16,19 +16,25 @@ services:
       - inception
     restart: always
 
-  # db:
-  #   container_name: db
-  #   build:
-  #     context: ./requirements/mariadb/
-  #     dockerfile: Dockerfile
-  #   image: db
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - inception
-  #   volumes:
-  #     - /home/ren-nasr/data/db/:/var/lib/mysql
-  #   restart: always
+  db:
+    container_name: db
+    build:
+      context: ./requirements/mariadb/
+      dockerfile: Dockerfile
+      args: 
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_NAME: ${MYSQL_NAME}
+    image: db
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - /tmp/ren-nasr/:/var/lib/mysql
+      # - /home/ren-nasr/data/db/:/var/lib/mysql
+    restart: always
 
   # wordpress:
   #   build: ./requirements/wordpress/

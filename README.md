@@ -1,13 +1,41 @@
 
+
+# The project:
+                                                        internet
+                                                           |
+                                                           |
+                                                      443  | 
+---------------------------------------------------------  | ---------
+|                                                          |         |
+|  ----------          ------------------            -------------   |
+| | container|   3306  |container       |   9000     | container |   |
+| | db       |  <--->  |wordpress + php |  <-------> | nginx     |   |
+| |__________|         |________________|            |___________|   |
+|     |                       |                   /                  |
+|_____|_______________________|_________________/_____________________
+      |                       |                /
+      |                       |               /
+      |                       |             /
+      |                       |            /
+     _______              _____________  /
+    |       |             |            |
+    |  db   |             | wordpress  |
+    |_______|             |____________|
+    volume                     volume
+
 # REMEMBER:
     - match login.fr.42 using docker dns not by modify host 
     -  reasearch hands and really get into nginx
-     
+    - how to explain the project 
+    
 # Docker
 
 The conclusion **Docker is all about process isolation.**
 
 Docker is a clever use of OS-level virtualization support that allows multiple docker containers to run on a single machine. a container is a running instance of a container image. containers are by default seperated from one another and from the host machine.
+
+
+
 
 
 
@@ -44,16 +72,25 @@ Two analogous way to look at the difference between containers and images:
 [absolutely intresting course](https://www.youtube.com/watch?v=MpFphzNPOcc)
 
 
-
 ## Docker as local development tool 
 
 - Host file system pollution problem (e.g. node_modules, .env, etc.)
 - Versions dependencies conflicts (e.g. node, npm, etc.)
 - Different OS (e.g. Windows, Mac, Linux, etc.)
 
+
+
 ## Docker and Microservices
 
 [A study case (how netflix transitioned to microservices architecture)](https://www.youtube.com/watch?v=CZ3wIuvmHeM&list=RDQM7FUm0ifHC4U&start_radio=1)
+
+
+
+## [The PID 1 Problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/)
+
+
+## Others:
+[php-fpm](https://www.inmotionhosting.com/support/server/php-fpm/php-fpm-the-future-of-php-handling/#:~:text=As%20PHP%2DFPM%20receives%20a,and%20waits%20for%20new%20requests.)
 
 
 

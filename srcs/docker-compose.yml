@@ -1,15 +1,36 @@
 version: '3.9'
 networks:
-  docker-network:
+  inception:
     driver: bridge
 
-
 services:
-  nginx:
-    build: ./requirements/nginx
+  reverse_proxy:
+    container_name: reverse_proxy
+    build:
+      context: ./requirements/nginx/
+      dockerfile: Dockerfile
+    image: reverse_proxy
     ports:
-      - 80:80
+      - 443:443
     networks:
-      - docker-network
-  
-  
+      - inception
+    restart: always
+
+  # db:
+  #   container_name: db
+  #   build:
+  #     context: ./requirements/mariadb/
+  #     dockerfile: Dockerfile
+  #   image: db
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - inception
+  #   volumes:
+  #     - /home/ren-nasr/data/db/:/var/lib/mysql
+  #   restart: always
+
+  # wordpress:
+  #   build: ./requirements/wordpress/
+  #   networks:
+  #     - docker-network

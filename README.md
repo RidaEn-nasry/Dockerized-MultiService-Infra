@@ -72,6 +72,9 @@ Two analogous way to look at the difference between containers and images:
 [absolutely intresting course](https://www.youtube.com/watch?v=MpFphzNPOcc)
 
 
+
+- [docker and environment variables](https://vsupalov.com/docker-arg-env-variable-guide/)
+
 ## Docker as local development tool 
 
 - Host file system pollution problem (e.g. node_modules, .env, etc.)

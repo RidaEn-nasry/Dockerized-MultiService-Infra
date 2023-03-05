@@ -1,3 +1,4 @@
+
 FROM alpine:3.17
 
 RUN apk update && apk upgrade
@@ -9,7 +10,4 @@ RUN chmod +x /usr/bin/dumb-init
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add php7-fpm php7-mysqli
 
-
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-
-

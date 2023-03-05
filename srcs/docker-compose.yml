@@ -4,17 +4,17 @@ networks:
     driver: bridge
 
 services:
-  reverse_proxy:
-    container_name: reverse_proxy
-    build:
-      context: ./requirements/nginx/
-      dockerfile: Dockerfile
-    image: reverse_proxy
-    ports:
-      - 443:443
-    networks:
-      - inception
-    restart: always
+  # reverse_proxy:
+  #   container_name: reverse_proxy
+  #   build:
+  #     context: ./requirements/nginx/
+  #     dockerfile: Dockerfile
+  #   image: reverse_proxy
+  #   ports:
+  #     - 443:443
+  #   networks:
+  #     - inception
+  #   restart: always
 
   db:
     container_name: db
@@ -34,7 +34,8 @@ services:
     volumes:
       - /tmp/ren-nasr/:/var/lib/mysql
       # - /home/ren-nasr/data/db/:/var/lib/mysql
-    restart: always
+    # restart: always
+    
 
   # wordpress:
   #   build: ./requirements/wordpress/

@@ -32,7 +32,7 @@ services:
     networks:
       - inception
     volumes:
-      - /tmp/ren-nasr/:/var/lib/mysql
+      - db_data:/var/lib/mysql
       # - /home/ren-nasr/data/db/:/var/lib/mysql
     restart: always
   # wordpress:
@@ -40,4 +40,10 @@ services:
   #   networks:
   #     - inception
 
-
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ren-nasr/data/db/
+      o: bind

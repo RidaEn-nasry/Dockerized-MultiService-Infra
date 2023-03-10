@@ -4,39 +4,34 @@
 #!/bin/sh
 
 
-# checking if the db folder exist
+# if database already exis only run exec "$@"
+if [ -d /var/lib/mysql/$MYSQL_NAME ]; then
+    echo "database already exists"
+    exec "$@"
+    # if database does not exist, create it
+else
+# execute the scl script "createdb.sql"
+    echo "database does not exist"
+    echo "starting mysql"
+    service mysql start 
+    echo "database started"
+    echo "executing script"
+    mysql -u root -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; \
+                           CREATE DATABASE IF NOT EXISTS $MYSQL_NAME;\
+                           GRANT ALL PRIVILEGES ON $MYSQL_NAME.* TO '$MYSQL_USER'@'%'; \
+                           ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
+                           FLUSH PRIVILEGES;"
+    echo "script executed"
+    echo "killing process"
+    kill -s TERM $(cat /run/mysqld/mysqld.pid) 
+    sleep 7
+    echo "process killed"
+    exec "$@"
+fi
 
-/etc/init.d/mysql start \
-    && mysql -u root -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; \
-                          CREATE DATABASE IF NOT EXISTS $MYSQL_NAME;\
-                          GRANT ALL PRIVILEGES ON $MYSQL_NAME.* TO '$MYSQL_USER'@'%'; \
-                          ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
-                          FLUSH PRIVILEGES;" && /etc/init.d/mysql stop && echo "$@"
-
-# mysqld_safe 
-
-    # && kill $(ps aux | grep "/usr/sbin/mysqld" | awk '{print $2}' | head -n 1) \
-
-
-# exec "$@" 
-
-
-
-# kill $(ps aux | grep "/usr/sbin/mysqld" | awk '{print $2}' | head -n 1) && service mysql stop
-
-
-#sleep 3 && kill $(ps aux | grep "/usr/sbin/mysqld" | awk '{print $2}' | head -n 1) && sleep 3 
-
-# ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
-# kill indeed kill the process, get it's pid and kill it first line only 
-
-# kill $(ps aux | grep mysqld | awk '{print $2}')
-
-# run the fourth line alone , you know with root -p 
-# mysql -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_NAME;\
-# GRANT ALL PRIVILEGES ON $MYSQL_NAME.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\
-# ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';\
-# FLUSH PRIVILEGES;" && service mysql stop
-
-# mysqld_safe
-
+# service mysql  \
+#     && echo "database started" && mysql -u root -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; \
+#                           CREATE DATABASE IF NOT EXISTS $MYSQL_NAME;\
+#                           GRANT ALL PRIVILEGES ON $MYSQL_NAME.* TO '$MYSQL_USER'@'%'; \
+#                           ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
+#                           FLUSH PRIVILEGES;" && echo "script executed" && kill -s TERM $(cat /run/mysqld/mysqld.pid) &&  echo "process killed" && exec "$@"

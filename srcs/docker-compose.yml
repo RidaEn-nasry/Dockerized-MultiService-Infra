@@ -35,15 +35,30 @@ services:
       - db_data:/var/lib/mysql
       # - /home/ren-nasr/data/db/:/var/lib/mysql
     restart: always
-  # wordpress:
-  #   build: ./requirements/wordpress/
-  #   networks:
-  #     - inception
+  wordpress:
+    build:
+      context: ./requirements/wordpress/
+      dockerfile: Dockerfile
+    image: wordpress
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - wp_data:/var/www/html
+      # - /home/ren-nasr/data/wp/:/var/www/html
+    restart: always
 
 volumes:
   db_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/ren-nasr/data/db/
+      device: /Users/ren-nasr/porn/data/db/
+      o: bind
+  wp_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/ren-nasr/porn/data/wp/
       o: bind

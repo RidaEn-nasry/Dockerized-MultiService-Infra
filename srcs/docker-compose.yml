@@ -39,13 +39,21 @@ services:
     build:
       context: ./requirements/wordpress/
       dockerfile: Dockerfile
+      args:
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_NAME: ${MYSQL_NAME}
+        WP_USER: ${WP_USER}
+        WP_USER_PASSWORD: ${WP_PASSWORD}
+        WP_USER_EMAIL: ${WP_EMAIL}
+
     image: wordpress
     env_file:
       - .env
     networks:
       - inception
-    volumes:
-      - wp_data:/var/www/html
+    # volumes:
+    #   - wp_data:/var/www/html
       # - /home/ren-nasr/data/wp/:/var/www/html
     restart: always
 
@@ -56,9 +64,9 @@ volumes:
       type: none
       device: /Users/ren-nasr/porn/data/db/
       o: bind
-  wp_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: /Users/ren-nasr/porn/data/wp/
-      o: bind
+  # wp_data:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /Users/ren-nasr/porn/data/wp/
+  #     o: bind

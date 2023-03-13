@@ -15,3 +15,4 @@ RUN sed -i 's/^bind-address\s*=.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf
 # RUN wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64 && chmod +x /usr/bin/dumb-init
 ENTRYPOINT [ "sh", "/tmp/init.sh" ]
 CMD [ "mysqld_safe" , "--verbose"]
+# CMD [ "sh", "/tmp/init.sh"]

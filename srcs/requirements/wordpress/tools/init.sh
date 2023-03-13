@@ -1,7 +1,6 @@
 
 mkdir -p /var/www/html/
 
-
 chmod -R 755 /var/www/html/
 
 cd /var/www/html/ && rm -rf *
@@ -16,19 +15,20 @@ wp core download --allow-root
 
 cp wp-config-sample.php wp-config.php
 
-
 sed -i "s/database_name_here/$MYSQL_NAME/g" wp-config.php
 sed -i "s/username_here/$MYSQL_USER/g" wp-config.php
 sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config.php
 sed -i 's/localhost/db/g' wp-config.php
 
-wp core install --url=ren-nasr.42.fr/ --title=hello --admin_user=ren-nasr --admin_password=12346 --admin_email=example@gmail.com --skip-email --allow-root
+sleep 30
+
+wp core install --url=https://localhost --title=hello --admin_user=ren-nasr --admin_password=12346 --admin_email=example@gmail.com --skip-email --allow-root
 wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PWD --allow-root
 
-wp theme install astra --activate --allow-root 
+wp theme install loudness --activate --allow-root 
 
 sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 mkdir /run/php
 
-exec "$@"
+php-fpm7.3 -F 

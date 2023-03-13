@@ -14,6 +14,8 @@ services:
       - 443:443
     networks:
       - inception
+    volumes:
+      - wp_data:/var/www/html
     restart: always
 
   db:
@@ -33,7 +35,6 @@ services:
       - inception
     volumes:
       - db_data:/var/lib/mysql
-      # - /home/ren-nasr/data/db/:/var/lib/mysql
     restart: always
   wordpress:
     build:
@@ -44,16 +45,16 @@ services:
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         MYSQL_NAME: ${MYSQL_NAME}
         WP_USER: ${WP_USER}
-        WP_USER_PASSWORD: ${WP_PASSWORD}
-        WP_USER_EMAIL: ${WP_EMAIL}
+        WP_USER_PASSWORD: ${WP_USER_PWD}
+        WP_USER_EMAIL: ${WP_USER_EMAIL}
 
     image: wordpress
     env_file:
       - .env
     networks:
       - inception
-    # volumes:
-    #   - wp_data:/var/www/html
+    volumes:
+      - wp_data:/var/www/html
       # - /home/ren-nasr/data/wp/:/var/www/html
     restart: always
 
@@ -62,11 +63,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ren-nasr/porn/data/db/
+      device: /Users/ren-nasr/porn/data/db/ #/home/ren-nasr/data/db/
       o: bind
-  # wp_data:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /Users/ren-nasr/porn/data/wp/
-  #     o: bind
+  wp_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/ren-nasr/porn/data/wp/ #/home/ren-nasr/data/wp/
+      o: bind

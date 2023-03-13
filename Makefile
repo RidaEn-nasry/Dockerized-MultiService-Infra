@@ -9,7 +9,7 @@ LOGIN=ren-nasr
 
 
 docker-install:
-	 apt-get update
+	apt-get update
 	apt-get install \
     ca-certificates \
     curl \
@@ -23,7 +23,7 @@ docker-install:
 	apt-get update
 	apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 	apt-get install docker-compose-plugin
-	
+
 mkdirs:
 	mkdir -p /home/$(LOGIN)/data/db
 	mkdir -p /home/$(LOGIN)/data/wp

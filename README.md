@@ -1,33 +1,4 @@
 
-
-# The project:
-                                                        internet
-                                                           |
-                                                           |
-                                                      443  | 
----------------------------------------------------------  | ---------
-|                                                          |         |
-|  ----------          ------------------            -------------   |
-| | container|   3306  |container       |   9000     | container |   |
-| | db       |  <--->  |wordpress + php |  <-------> | nginx     |   |
-| |__________|         |________________|            |___________|   |
-|     |                       |                   /                  |
-|_____|_______________________|_________________/_____________________
-      |                       |                /
-      |                       |               /
-      |                       |             /
-      |                       |            /
-     _______              _____________  /
-    |       |             |            |
-    |  db   |             | wordpress  |
-    |_______|             |____________|
-    volume                     volume
-
-# REMEMBER:
-    - match login.fr.42 using docker dns not by modify host 
-    -  reasearch hands and really get into nginx
-    - how to explain the project 
-    
 # Docker
 
 The conclusion **Docker is all about process isolation.**

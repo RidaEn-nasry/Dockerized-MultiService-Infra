@@ -1,10 +1,4 @@
 
-
-# The project:
-                                                        internet
-                                                           |
-                                                           |
-                                                      443  |
     
 # Docker
 

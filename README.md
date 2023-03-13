@@ -7,11 +7,6 @@ The conclusion **Docker is all about process isolation.**
 Docker is a clever use of OS-level virtualization support that allows multiple docker containers to run on a single machine. a container is a running instance of a container image. containers are by default seperated from one another and from the host machine.
 
 
-
-
-
-
-
 ## AH-HA MOMENTS
  - each docker container has its own private and loopback interface, just like a seperate os running in a seperate machine which re-inforce process isolation.
  - docker basically has its own fucking network stack , isn't that wild

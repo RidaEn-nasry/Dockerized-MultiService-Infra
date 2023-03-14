@@ -1,18 +1,24 @@
 
 LOGIN=ren-nasr
+DIR=/Users/ren-nasr/porn/data/
+#DIR=/home/$(LOGIN)/data
 
+#cd ./srcs && sudo docker-compose up
 all: mkdirs
-	cd ./srcs && sudo docker-compose up
+	cd ./srcs && docker-compose up
+
+rebuild: mkdirs
+	cd ./srcs && docker-compose up --build
 
 mkdirs:
-	mkdir -p /home/$(LOGIN)/data/db
-	mkdir -p /home/$(LOGIN)/data/wp
+	test -d $(DIR)/db || mkdir -p $(DIR)/db
+	test -d $(DIR)/wp || mkdir -p $(DIR)/wp
 
+
+#cd ./srcs && sudo docker-compose down
 clean:
-	cd ./srcs && sudo docker-compose down
-	sudo rm -rf /home/$(LOGIN)/data/db
-	sudo rm -rf /home/$(LOGIN)/data/wp
-
+	cd ./srcs && docker-compose down
+	rm -rf $(DIR)
 re: clean all
 
 .PHONY: all clean re

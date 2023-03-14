@@ -8,7 +8,6 @@ if [ -d /var/lib/mysql/$MYSQL_NAME ]; then
     echo "database already exists"
     exec "$@" 
 else
-    
     echo "database does not exist"
     echo "starting mysql"
     service mysql start

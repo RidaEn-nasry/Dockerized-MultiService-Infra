@@ -1,13 +1,13 @@
 
 LOGIN=ren-nasr
-#DIR=/Users/ren-nasr/porn/data/
-DIR=/home/$(LOGIN)/data
+DIR=/Users/ren-nasr/porn/data/
+# DIR=/home/$(LOGIN)/data
 
-all: mkdirs
-	cd ./srcs && sudo docker-compose up
+all:
+	cd ./srcs && docker-compose up
 
 rebuild: mkdirs
-	cd ./srcs && sudo docker-compose up --build
+	cd ./srcs &&  docker-compose up --build
 
 mkdirs:
 	test -d $(DIR)/db || mkdir -p $(DIR)/db
@@ -16,7 +16,7 @@ mkdirs:
 
 #cd ./srcs && sudo docker-compose down
 clean:
-	cd ./srcs && sudo docker-compose down
+	cd ./srcs && docker-compose down
 	sudo rm -rf $(DIR)
 
 re: clean all

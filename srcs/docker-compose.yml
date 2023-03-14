@@ -37,6 +37,7 @@ services:
       - db_data:/var/lib/mysql
     restart: always
   wordpress:
+    container_name: wordpress
     build:
       context: ./requirements/wordpress/
       dockerfile: Dockerfile
@@ -62,11 +63,12 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ren-nasr/data/db/
+      device: /Users/ren-nasr/porn/data/db
       o: bind
   wp_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/ren-nasr/data/wp/
+      device: /Users/ren-nasr/porn/data/wp
       o: bind
+      # device: /home/ren-nasr/data/wp/

@@ -5,7 +5,7 @@ ARG MYSQL_ROOT_PASSWORD
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install wget mariadb-server procps -y
+RUN apt-get update -y && apt-get upgrade -y && apt-get install mariadb-server procps -y
 COPY ./tools/init.sh /tmp/init.sh
 RUN chmod +x /tmp/init.sh
 EXPOSE 3306

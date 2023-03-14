@@ -7,7 +7,6 @@ ARG MYSQL_PASSWORD
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install wget mariadb-server procps -y
 COPY ./tools/init.sh /tmp/init.sh
-COPY ./tools/createdb.sql /tmp/createdb.sql
 RUN chmod +x /tmp/init.sh
 EXPOSE 3306
 RUN sed -i 's/^bind-address\s*=.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf

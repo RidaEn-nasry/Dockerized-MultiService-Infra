@@ -4,6 +4,11 @@ ARG MYSQL_PASSWORD
 ARG WP_USER
 ARG WP_USER_EMAIL
 ARG WP_USER_PWD
+ARG WP_SITE_TITLE
+ARG WP_ADMIN_USER
+ARG WP_ADMIN_PWD
+ARG WP_ADMIN_EMAIL
+ARG WP_URL
 
 FROM debian:buster 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install wget php-fpm php-mysql curl -y

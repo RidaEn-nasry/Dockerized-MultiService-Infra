@@ -13,6 +13,6 @@ RUN chmod +x /tmp/init.sh
 
 EXPOSE 9000
 
-ENTRYPOINT [ "sh", "/tmp/init.sh" ]
 
-CMD ["php-fpm7.3", "-F"]
+ENTRYPOINT [ "sh", "/tmp/init.sh" ]
+CMD [ "php-fpm7.3", "-F" ] 

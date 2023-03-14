@@ -2,11 +2,11 @@
 LOGIN=ren-nasr
 
 all: mkdirs
-	cd ./srcs && docker-compose up -d
+	cd ./srcs && sudo docker-compose up -d
 
 mkdirs:
-	mkdir -p /home/$(LOGIN)/data/db
-	mkdir -p /home/$(LOGIN)/data/wp
+	sudo mkdir -p /home/$(LOGIN)/data/db
+	sudo mkdir -p /home/$(LOGIN)/data/wp
 
 clean:
 	cd ./srcs && docker-compose down

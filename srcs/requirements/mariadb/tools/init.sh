@@ -3,7 +3,6 @@
 
 #!/bin/sh
 
-# if database already exis only run exec "$@"
 if [ -d /var/lib/mysql/$MYSQL_NAME ]; then
     echo "database already exists"
     exec "$@" 
@@ -29,7 +28,6 @@ else
     fi
     sleep 7
     echo "process killed"
-    # exec mysqld_safe
     exec "$@"
 fi
 

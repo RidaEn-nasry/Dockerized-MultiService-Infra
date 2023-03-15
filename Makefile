@@ -4,8 +4,11 @@ DIR=/home/$(LOGIN)/data
 
 all: mkdirs
 	cd ./srcs && sudo docker-compose up
+all: mkdirs
+	cd ./srcs && sudo docker-compose up
 
 rebuild: mkdirs
+	cd ./srcs && sudo docker-compose up --build
 	cd ./srcs && sudo docker-compose up --build
 
 mkdirs:
